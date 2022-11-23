@@ -25,6 +25,7 @@ app.post('/post', (req, res)=>{
     let id=req.body.id;
     let pw=req.body.pw;
     //이렇게 가져오면 오류남! 다른 작업을 해줘야 함! => 파싱작업 => 위에서 모듈 불러옴
+        //처리해주면 오류 안 나고 잘 됨
 
     res.send('id: '+id+'pw: '+pw);//잘 가지고 오는지 확인
 });
