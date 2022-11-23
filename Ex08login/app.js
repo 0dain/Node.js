@@ -7,7 +7,10 @@ const app=express();//app생성
 app.set('port', process.env.PORT||8888);
 app.set('view engine', 'html');//넌적스 = njk 또는 html로 쓰면 됨, 넌적스 사용할 때 해줘야 하는 세팅
 
+
 app.use('/', indexRouter);// /일 때 indexRouter를 실행하겠다!
+// app.use('/login', indexRouter);// /일 때 indexRouter를 실행하겠다!
+
 
 nunjucks.configure('views',{
     express: app,//위에 생성한 app 객체 연결
