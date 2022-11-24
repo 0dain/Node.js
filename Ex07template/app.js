@@ -1,5 +1,5 @@
 const express=require('express');
-const nunjucks=require('nunjucks');//넌적스 템플릿 엔진 사용
+const nunjucks=require('nunjucks');//넌적스 템플릿 엔진 사용, npm install nunjucks
 const indexRouter=require('./routes');//index.js 불러오겠다!
 
 const app=express();//app생성
@@ -17,3 +17,5 @@ nunjucks.configure('views',{
 app.listen(app.get('port'), ()=>{
     console.log(app.get('port'), '번 포트에서 서버 연결 대기중...');
 });
+
+//오류가 나서 제대로 실행이 안 될 때 => npm install nunjucks chokidar

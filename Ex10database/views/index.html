@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <th>아이디</th>
+            <th>비밀번호</th>
+            <th>닉네임</th>
+        </tr>
+        {%for item in list%}
+        <tr>
+            <td class="id">{{item.id}}</td>
+            <td class="pw">{{item.pw}}</td>
+            <td class="nick">{{item.nick}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+
+    <h3>특정회원정보 조회</h3>
+    <table border="1">
+        <tr>
+            <th>아이디</th>
+            <th>비밀번호</th>
+            <th>닉네임</th>
+        </tr>
+        <tr>
+            <td id="searchId"></td>
+            <td id="searchPw"></td>
+            <td id="searchNick"></td>
+        </tr>
+    </table>
+
+    <H3>회원 추가</H3>
+    <form action="insert" method="post">
+        ID : <input type="text" name="id"><br>
+        PW : <input type="text" name="pw"><br>
+        NICK : <input type="text" name="nick"><br>
+        <input type="submit" value="INSERT">
+    </form>
+
+    <H3>회원 정보 수정</H3>
+    <form action="" method="">
+        ID : <input type="text" name="id" id="updateId" readonly><br>
+        PW : <input type="text" name="pw" id="updatePw"><br>
+        NICK : <input type="text" name="nick" id="updateNick"><br>
+        <input type="submit" value="UPDATE">
+    </form>
+</body>
+
+</html>
