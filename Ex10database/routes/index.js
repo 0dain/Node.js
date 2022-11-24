@@ -44,4 +44,40 @@ router.post('/insert', (req, res)=>{
     });//sql 작동
 });
 
+//특정 회원 조회
+// router.post('/select/selectOne', (req, res)=>{
+//     let sql='select * from member where id='+'smhrd';
+
+//     conn.query(sql, function(err, rows, fields){
+//         console.log(rows);
+//         console.log(fields);
+
+//         if(err){
+//             console.error('회원 조회 실패💫: '+err);
+//         }else{
+//             res.render('index', {list: rows});
+//         }
+
+//     });
+// });
+
+//회원정보 수정
+router.post('/update', (req, res)=>{
+    let {id, pw, nick}=req.body;
+
+    let sql='update member set pw=?, nick=? where id=?';
+
+     // conn.query(실행할 sql문, [물음표 값에 들어갈 데이터 적어주기(순서대로)],sql실행하고 난 후에 결과 처리 어떻게 할 건지);//sql 작동
+     conn.query(sql, [pw, nick, id], function(err, rows, fields){
+        console.log(rows); //영향을 받은 row에 대한 정보
+        console.log(fields);//row에 대한 자세한 메타데이터
+
+        if(err){//실패
+            console.error('update 실패😥: '+err);
+        }else{//성공
+            res.redirect('/select');//select 페이지로 이동
+        }
+    });//sql 작동
+});
+
 module.exports=router;
