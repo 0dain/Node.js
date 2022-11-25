@@ -18,7 +18,7 @@ module.exports={
         //예외처리 해야 함, 연결이 안 될 수도 있기 때문!
         conn.connect(function(err){
             if(err){
-                console.error('mysql 연결 오류💢: '+err);
+                console.error('mysql 연결 오류💢 : '+err);
             }else{
                 console.log('mysql 연결 성공🎉');
             }

@@ -15,14 +15,46 @@
             <th>비밀번호</th>
             <th>닉네임</th>
         </tr>
+        <!-- 키 값을 출력할 거면 중괄호 두 개, 사용만 할 거면 중괄호 하나 -->
         {%for item in list%}
-        <tr>
+        <tr class="row{{loop.index}}">
             <td class="id">{{item.id}}</td>
             <td class="pw">{{item.pw}}</td>
             <td class="nick">{{item.nick}}</td>
+            <td><button onclick="selectOne('{{loop.index}}')">이 회원 정보만 조회</button></td>
+            <td><button onclick="location.href='/delete/{{item.id}}'">삭제</button></td>
+            <td><button onclick="update('{{item.id}}','{{item.pw}}', '{{item.nick}}')">수정</button></td>
+            <!-- location.href='/delete/중괄호item.id -->
         </tr>
         {%endfor%}
     </table>
+    <script>
+        async function selectOne(index){
+            // console.log(document.getElementsByClassName(row+'{{loop.index}}'))
+            let id=document.querySelector('.row'+index+'>.id').innerText;
+            console.log(id);
+            // /select/id 요청(비동기 방식으로)
+            //버튼을 누르면 서버로 요청해서 해당 회원 정보만 가져오기
+            //가져온 정보를 특정 회원 정보 테이블에 출력!
+
+            //URL 요청
+            const reqURL='select/'+id;
+            
+            // await fetch(reqURL, {같이 보내고 싶은 값})
+                //응답이 올 때까지 기다리기
+                //then => 받아온 값 처리
+                    //프로미스로 받아온 값을 json형태로 바꿔줌
+            await fetch(reqURL).then((res)=>res.json()).then((res2)=>{
+                // json 형식으로 바꾼 값을 어떻게 처리할 건지 작성
+                console.log(res2)
+                console.log(res2.listOne)
+                console.log(res2.listOne[0].id)
+                document.getElementById("searchId").innerText=res2.listOne[0].id;
+                document.getElementById("searchPw").innerText=res2.listOne[0].pw;
+                document.getElementById("searchNick").innerText=res2.listOne[0].nick;
+            });
+        }
+    </script>
 
     <h3>특정회원정보 조회</h3>
     <table border="1">
@@ -38,6 +70,8 @@
         </tr>
     </table>
 
+
+
     <H3>회원 추가</H3>
     <form action="insert" method="post">
         ID : <input type="text" name="id"><br>
@@ -46,10 +80,18 @@
         <input type="submit" value="INSERT">
     </form>
 
+    <script>
+        //수정버튼을 누르면 바꾸고자 하는 회원 정보 input 태그에 세팅하기
+        function update(id, pw, nick){
+            document.getElementById("updateId").value=id;
+            document.getElementById("updatePw").value=pw;
+            document.getElementById("updateNick").value=nick;
+        }
+    </script>
+
     <H3>회원 정보 수정</H3>
     <form action="update" method="post">
-        <!-- ID : <input type="text" name="id" id="updateId" readonly><br> -->
-        ID : <input type="text" name="id" id="updateId"><br>
+        ID : <input type="text" name="id" id="updateId" readonly><br>
         PW : <input type="text" name="pw" id="updatePw"><br>
         NICK : <input type="text" name="nick" id="updateNick"><br>
         <input type="submit" value="UPDATE">

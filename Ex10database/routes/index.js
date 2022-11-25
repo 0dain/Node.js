@@ -45,21 +45,54 @@ router.post('/insert', (req, res)=>{
 });
 
 //특정 회원 조회
-// router.post('/select/selectOne', (req, res)=>{
-//     let sql='select * from member where id='+'smhrd';
+    //뒤에 받아오는 id값은 계속 바뀌는 값이기 때문에 : 쓰기!
+router.get('/select/:id', (req, res)=>{
+    //경로에 있는 값을 가져와야 할 때 => params
+    let id=req.params.id;
 
-//     conn.query(sql, function(err, rows, fields){
-//         console.log(rows);
-//         console.log(fields);
+    //계속 달라지는 값이니까 ? 넣기
+    let sql='select * from member where id=?';
 
-//         if(err){
-//             console.error('회원 조회 실패💫: '+err);
-//         }else{
-//             res.render('index', {list: rows});
-//         }
+    //물음표에 넣을 값 배열로 순서대로 적기!
+    conn.query(sql, [id],function(err, rows, fields){
+        //결과는 rows가 가지고 있음
+        console.log(rows);
+        console.log(fields);
 
-//     });
-// });
+        if(err){
+            console.error('회원 조회 실패💫 : '+err);
+        }else{
+            // res.render('index', {list: rows});
+            // 비동기 방식으로 받아왔기 때문에 데이터만 보낼 거임
+            //json형식으로!
+            res.json({listOne: rows});
+        }
+    });
+});
+
+
+//회원정보 삭제
+//삭제 요청 들어오면 이렇게 처리 하겠다!
+// router.delete(); 나중에 써보자!
+router.get('/delete/:id', (req, res)=>{
+
+    let id=req.params.id;
+
+    let sql='delete from member where id=?';
+
+    conn.query(sql, [id], function(err, rows, fields){
+        console.log(rows);
+        console.log(fields);
+
+        if(err){
+            console.error('회원 정보 삭제 실패 😨 : '+err)
+        }else{
+            res.redirect('/select');
+        }
+    });
+
+});
+
 
 //회원정보 수정
 router.post('/update', (req, res)=>{
