@@ -1,6 +1,7 @@
 ORM(Object Relational Mapping: 객체-관계 맵핑)
     : Object(Model) - Relational(관계형 데이터베이스)
     -> 자동으로 연결(맵핑)
+    스프링에는 JPA가 있음
 
 ex) node -> Sequelize
     Spring -> JPA

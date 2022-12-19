@@ -8,11 +8,12 @@ app.use(bodyParser.urlencoded({extended:true}));//바디파싱해주기 위한 �
 app.set('port', process.env.PORT||8888);
 
 app.get('/get', (req, res)=>{
+    //파라미터로 받을 때
     //'/user/{id}'
     //user/1 => parameter
-    //파라미터로 받을 때
     //req.params.id
     //req.params.pw
+    
     //쿼리스트링 => ?name=value&name2=value2
     let id=req.query.id;//쿼리스트링 중에서 id라는 값을 가져와라
     let pw=req.query.pw;//쿼리스트링 중에서 pw라는 값을 가져와라

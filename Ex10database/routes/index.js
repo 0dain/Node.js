@@ -11,8 +11,8 @@ router.get('/select', (req, res)=>{
     let sql='select * from member';
 
     conn.query(sql, function(err, rows, fields){
-        console.log(rows);
-        console.log(fields);
+        console.log(rows); //결과
+        console.log(fields);//결과를 조금 더 자세한 내용으로 보여줌
         if(err){
             console.error('select 실행 실패💥: '+err);
         }else{
@@ -30,7 +30,8 @@ router.post('/insert', (req, res)=>{
         //바뀌는 값은 ?로 쓰기
     let sql='insert into member values(?,?,?)';
     
-    // conn.query(실행할 sql문, [물음표 값에 들어갈 데이터 적어주기(순서대로)],sql실행하고 난 후에 결과 처리 어떻게 할 건지);//sql 작동
+    // conn.query(실행할 sql문, [물음표 값에 들어갈 데이터 적어주기(순서대로)]
+    //sql실행하고 난 후에 결과 처리 어떻게 할 건지);//sql 작동
     conn.query(sql, [id, pw, nick], function(err, rows, fields){
         console.log(rows); //영향을 받은 row에 대한 정보
         console.log(fields);//row에 대한 자세한 메타데이터

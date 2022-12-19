@@ -6,4 +6,8 @@ router.get('/hello', (req, res)=>{
     res.send('user router!');
 });
 
+router.get('/join', (req, res)=>{
+    
+})
+
 module.exports=router;//app.js에서 사용할 수 있도록 내보내기

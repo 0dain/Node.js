@@ -4,7 +4,7 @@ const cookieRouter=require('./routes/cookie');
 const sessionRouter=require('./routes/session');
 const cookieParser=require('cookie-parser');//npm install cookie-parser, 쿠키 확인
 const session=require('express-session');//npm install express-session
-const fileStore=require('session-file-store')(session);//npm install session-file-store
+const fileStore=require('session-file-store')(session);//npm install session-file-store, 세션이 생성될 때 세션을 저장할 폴더를 만들어서 저장(저장소)
 
 //app.set('key', value): 키에 값을 저장하도록 설정
 app.set('port', process.env.PORT||8888);
